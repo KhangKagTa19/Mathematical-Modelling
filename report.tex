@@ -1,0 +1,2377 @@
+\documentclass[a4paper]{article}
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage{vntex}
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
+%\usepackage{english}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx,color,latexsym}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm] {geometry}
+\usepackage{fancybox}
+\usepackage{hyperref}
+\usepackage{multicol}
+%\usepackage{bbold}
+%\usepackage{pstcol} 								% PSTricks with the standard color package
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\graphicspath{ {./plotting} }
+\usepackage{codespace}
+
+\newtheorem{theorem}{{\bf Theorem}}
+\newtheorem{property}{{\bf Property}}
+\newtheorem{proposition}{{\bf Proposition}}
+\newtheorem{corollary}[proposition]{{\bf Corollary}}
+\newtheorem{lemma}[proposition]{{\bf Lemma}}
+
+\AtBeginDocument{\renewcommand*\contentsname{Contents}}
+\AtBeginDocument{\renewcommand*\refname{References}}
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily University of Technology, Ho Chi Minh City}\\
+		\textbf{\bf \ttfamily Faculty of Computer Science and Engineering}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf 
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Mathematical Modeling Assignment (CO2011), Semester 1, Academic year 2022-2023}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY \\
+UNIVERSITY OF TECHNOLOGY \\
+FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+\end{center}
+
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{hcmut.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+
+\begin{center}
+\begin{tabular}{c}
+\multicolumn{1}{l}{\textbf{{\Large MATHEMATICAL MODELING (CO2011)}}}\\
+~~\\
+\hline
+\\
+\multicolumn{1}{l}{\textbf{{\Large Assignment (Semester: 221, Duration: 04 weeks)}}}\\
+\\
+\textbf{{\Huge "Dynamics of Love"}}\\
+\\
+\textbf{{\Huge	}}\\
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{3cm}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{5 cm} & Advisor: & Dr. Nguyễn Tiến Thịnh\\
+& Students: & Tạ Gia Khang - 2152642 \\
+& & Nguyễn Chánh Tín - 2153043 \\
+& & Tăng Tuấn Đạt - 2152512 \\
+\end{tabular}
+\end{table}
+
+\begin{center}
+{\footnotesize HO CHI MINH CITY, DECEMBER 2022}
+\end{center}
+\end{titlepage}
+
+
+%\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Member list \& Workload}
+
+\begin{center}
+\begin{tabular}{|c|c|c|l|c|}
+\hline
+\textbf{No.} & \textbf{Fullname} & \textbf{Student ID}  & \textbf{Percentage of work}\\
+\hline 
+%%%%%Student 1%%%%%%%%%%
+\multirow{3}{*}{1} & \multirow{3}{*}{Tạ Gia Khang} & \multirow{3}{*}{2152642} &  \multirow{3}{*}{40\%}\\
+ & &  & &\\
+ & &  &&\\
+\hline 
+%%%%%Student 2%%%%%%%%%%%
+\multirow{3}{*}{2} & \multirow{3}{*}{Nguyễn Chánh Tín} & \multirow{3}{*}{2153043} & \multirow{3}{*}{30\%}\\
+ & &  & \\
+ & &  & \\
+\hline
+ %%%%%Student 2%%%%%%%%%%%
+\multirow{3}{*}{3} & \multirow{3}{*}{Tăng Tuấn Đạt} & \multirow{3}{*}{2152512} &  \multirow{3}{*}{30\%}\\
+ & &  &\\
+ & &  & \\
+\hline
+%%%%%Student 3%%%%%%%%%%%
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background Knowledge}
+	\subsection{Calculus Background Knowledge}
+\enskip \enskip \enskip \textbf{First Order Differential Equation}
+
+A first order differential equation is an equation of the form $F\left(x, f(x), f^{\prime}(x)\right)=0$
+
+A first order initial value problem (IVP) is a first order differential equation that satisfies the initial condition $f\left(x_{0}\right)=y_{0}$.
+
+We have been similar to the problem $x^{\prime}(t)=a \cdot x(t)$ with $x\left(t_{0}\right)$,
+
+And this has the following solution:
+
+$x(t)=c . e^{a . t}$, by using $x\left(t_{0}\right)$ we could find the constant $c .\left(^{*}\right)$\\
+
+
+\textbf{Second Order Differential Equation}
+
+The most general linear second order differential equation is in the form $a y^{\prime \prime}+b y^{\prime}+c y=g(t)$,
+
+But in this section we will mention mostly about nonhomogeneous $2^{\text {nd }}$ ODE.
+
+$$a y^{\prime \prime}+b y^{\prime}+c y=0 \text{\;with\;} y\left(x_{0}\right), y^{\prime}\left(x_{0}\right)$$
+
+Of course we always start with hoping for the best, so we try the easiest possible type of solution, which would be the exponential $e^{r x}$ (easiest to differentiate). We plug in $e^{r x}$, trying to find what number $r$ will make this a solution. That will give us:
+
+$$A r^{2} e^{r x}+B r e^{r x}+C e^{r x}=0 \Leftrightarrow A r^{2}+B r+C=0\left(e^{r x} \neq 0\right)$$
+
+This is called the characteristic equation. Let us see what can possibly happen with this quadratic equation.
+
+To solve with this equation, we will concentrate on the characteristic equation:
+
+$$a \cdot r^{2}+b \cdot r+c=0$$
+
+This equation will have three case of two root:
+
+\begin{itemize}
+	\item Real, distinct two roots $r_{1} \neq r_{2}$
+	
+	
+	The general solution is $y=c_{1} e^{r_{1} t}+c_{2} e^{r_{2} t}$
+	
+	\item Two complex roots $r_{1,2}=\lambda \pm \mu . i$
+	
+	
+	The general solution is $y=c_{1} e^{r_{1} t}+c_{2} e^{r_{2} t}=c_{1} e^{(\lambda+\mu i) t}+c_{2} e^{(\lambda-\mu i) t}$
+	
+	Fact: We will need a nice variant of Euler Formula:
+	
+	$e^{-i \theta}=\cos \theta-i \cdot \sin \theta$ \\
+ Then, the general solution will be $y(t)=c_{1} e^{\lambda t} \cos (\mu t)+c_{2} e^{\lambda t} \sin (\mu t)$
+	
+	\item Double root $r_{1}=r_{2}$
+	
+	The general solution is $y(t)=c_{1} e^{r t}+c_{2} t e^{r t}$
+\end{itemize}
+
+\textbf{Vector field}
+
+A vector field on two dimensional space is a function $\vec{F}$ that assign to each point $(x, y)$ a vector given by $\vec{F}(x, y)$
+
+Some example:
+
+
+\begin{center}
+	\includegraphics[scale = 0.3]{h1}\\
+	A portion of the vector field $(\sin y, \sin x)$ \quad
+	
+        A portion of the vector field $f(x, y)=x^{2}+y^{2}$
+\end{center}
+
+
+
+	\subsection{Linear Algebra Background Knowledge}
+
+
+\enskip \enskip \enskip Vectors: special objects that can be added together and multiplier by scalar to produce another object of same kind.
+
+\begin{center}
+	\includegraphics[scale = 0.3]{2022_11_29_c13d32a982035600e5afg-02(1)}
+	\includegraphics[scale = 0.3]{2022_11_29_c13d32a982035600e5afg-02(2)}
+	\includegraphics[scale = 0.3]{2022_11_29_c13d32a982035600e5afg-02(3)}\\
+	(a) Vector (b) Add vector  (c) Scale vector
+\end{center}
+
+
+
+
+Matrix: is a rectangular array or table of numbers, symbols, or expressions, arranged in rows and columns.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-03}\\
+	   Figure 5: Column combination
+\end{center}
+
+
+\textbf{Invertible:}
+
+Square matrix $A \in R^{n \times n}$, matrix $B \in R^{n \times n}$ have the property that $A B=B A=I_{n}$, $B$ is called the inverse of $A$ and donated $A^{-1}$.
+
+For a 2x2 matrix, we can find the inverse matrix of $\left(\begin{array}{ll}a & b \\ c & d\end{array}\right)$ by $\left(\begin{array}{cc}\frac{d}{D} & -\frac{b}{D} \\ -\frac{c}{D} & \frac{a}{D}\end{array}\right)$ with $D=a d-b c$ is the determinant of that matrix and must not be 0 .
+
+\textbf{Eigenvalue, eigenvector:}
+
+An eigenvector or characteristic vector is a nonzero vector that changes at most by a scalar factor when that linear transformation is applied to it. The corresponding eigenvalue, often denoted by $\lambda$, is the factor by which the eigenvector is scaled.
+
+With $A \eta=\lambda \eta$ or $(A-\lambda I) \eta=0$
+
+A simple example is that an eigenvector does not change direction in a transformation:
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-03(1)}
+\end{center}
+
+For a 2x2 matrix, the eigenvalue could be found by:
+
+$\operatorname{det}(A-\lambda I)=0$
+
+Or $\lambda^{2}-\operatorname{trace} A \cdot \lambda+\operatorname{det} A=0$
+
+After that we could find the eigen vector $\eta$ for each vector value by solving (1). (3)
+
+
+	\subsection{Initial Value Problem}
+	
+
+\enskip \enskip \enskip In multivariable calculus, an initial value problem (IVP) is an ordinary differential equation together with an initial condition which specifies the value of the unknown function at a given point in the domain. Modeling a system in physics or other sciences frequently amounts to solving an initial value problem. In that context, the differential initial value is an equation which specifies how the system evolves with time given the initial conditions of the problem.
+
+A basic system of First Order Differential Equation with Initial Value Problem is in the form $$\left\{\begin{array}{l}x_{1}{ }^{\prime}=a \cdot x_{1}+b \cdot x_{2} \\ x_{2}{ }^{\prime}=c \cdot x_{1}+d \cdot x_{2}\end{array}\right. \text{\;with\;} x_{1}\left(t_{0}\right), x_{2}\left(t_{0}\right)$$
+Or 
+
+$\overrightarrow{x^{\prime}}=A \vec{x}, \overrightarrow{x\left(t_{0}\right)}$ with $A=\left[\begin{array}{ll}a & b \\ c & d\end{array}\right]  \text{\;(2) (this is called Homogeneous Equation)}$
+
+From $(*)$ we have a solution that $x=c . e^{A t}$ with $A_{1 \times 1}$
+
+Let's use this as a guide and for a general size NxN of matrix $A$ we got $\vec{x}(t)=\vec{\eta} e^{r t}$
+
+To prove this solution:
+
+$\vec{x}^{\prime}(t)=r \vec{\eta} e^{r t}$
+
+From (2), we got:
+
+$r \vec{\eta} e^{r t}=A \vec{\eta} e^{r t} \Leftrightarrow(A-r I) \vec{\eta}=0$
+
+Therefore, $r$ and $\vec{\eta}$ must be an eigenvalue and eigenvector of matrix $A$.
+
+{\it  Equilibrium solution:}
+
+The solution $\vec{x}=\overrightarrow{0}$, is called an \textbf{equilibrium solution} for the system. As with the single differential equations case, equilibrium solutions are those solutions for which $A \vec{x}=\overrightarrow{0}$
+
+We are going to assume that $\mathrm{A}$ is a nonsingular matrix and hence will have only one solution, $\vec{x}=\overrightarrow{0}$, and so we will have only one equilibrium solution, and this will be the origin of the "phase plane" that will be mentioned later.
+
+Some addition fact: \\
+\enskip \enskip \enskip $\vec{x}_{1}(t), \vec{x}_{2}(t)$ are general solution to a homogeneous, then $c_{1} \vec{x}_{1}(t)+c_{2} \vec{x}_{2}(t)$ is also a solution.
+
+We define $\mathrm{X}$ is the matrix that the $i^{\text {th }}$ column is the $i^{\text {th }}$ solution. This matrix $\mathrm{X}$ will be mentioned later in the [Non-homogeneous] section, also we will call it "solution matrix" in other section.
+
+{\it  General solution for Homogeneous equation:}
+
+For any matrix $A_{2 \times 2}$, we could find the eigenvalue and eigenvector as mentioned in (3).
+
+These eigenvalue will have 3 possible case:
+
+\begin{itemize}
+	\item Case 1: Distinct real eigenvalue $\lambda_{1} \neq \lambda_{2}$
+\end{itemize}
+
+We will get two eigenvector $\overrightarrow{\eta^{(1)}}, \overrightarrow{\eta^{(2)}}$
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda_{1} t} \overline{\eta^{(1)}}+c_{2} e^{\lambda_{2} t} \overline{\eta^{(2)}}$
+
+{\bf  A very detailed example:}
+
+$$\left\{\begin{array}{l}\dot{x}_{1}=x_{1} \\ \dot{x}_{2}=x_{1}+2 x_{2}\end{array}\right.$$
+
+With $A=\left[\begin{array}{ll}1 & 0 \\ 1 & 2\end{array}\right]$, we can get the eigenvectors by find the roots of $\lambda^{2}-3 \lambda+2=0$
+
+Then
+$$\lambda_{1}=1 \Leftrightarrow\left(A-\lambda_{1} I\right) \vec{\eta}_{1}=0$$
+
+Solve this Linear Algebra problem by using Gaussian Elimination, we get $\vec{\eta}_{1}=\left(\begin{array}{l}-1 \\ 1\end{array}\right)$
+$$\lambda_{2}=2 \Leftrightarrow\left(A-\lambda_{2} I\right) \vec{\eta}_{2}=0$$
+
+Using the same method as mentioned, we get $\vec{\eta}_{2}=\left(\begin{array}{l}0 \\ 1\end{array}\right)$
+
+So, the general solution for this problem is
+$$
+\left\{\begin{array}{l}
+	x_{1}(t)=c_{1} e^{t} \cdot(-1)+c_{2} e^{2 t} \cdot(0) \\
+	x_{2}(t)=c_{2} e^{t} \cdot(1)+c_{2} e^{2 t} \cdot(1)
+\end{array}\right.
+$$
+
+\begin{itemize}
+	\item Case 2: Complex eigenvalue $\lambda_{1}, \lambda_{2}=a \pm b i$
+\end{itemize}
+
+We will get two eigenvector $\overline{\eta^{(1)}}, \overrightarrow{\eta^{(2)}}$ Then $\overrightarrow{x_{1}}(t)=c_{1} e^{\lambda_{1} t} \overrightarrow{\eta^{(1)}}=\vec{u}(t)+i \cdot \vec{v}(t)$ (by using some mathematics method and Euler formula)
+
+General solution: $\vec{x}(t)=c_{1} e^{a . t} \vec{u}+c_{2} e^{a . t} \vec{v}$
+
+{\bf  A very detailed example:}
+
+$$
+\left\{\begin{array}{l}
+	\dot{x}_{1}=x_{1}-2 x_{2} \\
+	\dot{x}_{2}=x_{1}+3 x_{2}
+\end{array}\right.
+$$
+
+With $A=\left[\begin{array}{ll}1 & -2 \\ 1 & 3\end{array}\right]$, we can get the eigenvectors by find the roots of $\lambda^{2}-4 \lambda+5=0$
+
+Then
+$$
+\lambda_{1}=2-i \Leftrightarrow\left(A-\lambda_{1} I\right) \vec{\eta}_{1}=0
+$$
+
+Solve this Linear Algebra problem by using Gaussian Elimination, we get $\vec{\eta}_{1}=\left(\begin{array}{l}-1-i \\ 1\end{array}\right)$
+$$
+\lambda_{2}=2+i
+$$
+Then,
+$$
+\overrightarrow{x_{1}}(t)=c_{1} e^{\lambda_{1} t} \overrightarrow{\eta^{(1)}}=c_{1} e^{(2-i) t}\left(\begin{array}{l}
+	-1-i \\
+	1
+\end{array}\right)
+$$
+Using the Euler's Formula to get the complex number out of the exponential, this gives us:
+$$
+\begin{aligned}
+	&\overrightarrow{x_{1}}(t)=c_{1} e^{\lambda_{1} t} \overrightarrow{\eta^{(1)}}=c_{1} e^{2 t} \cdot e^{-i t}\left(\begin{array}{l}
+		-1-i \\
+		1
+	\end{array}\right)=c_{1} e^{2 t}(\cos (t)-i \sin (t))\left(\begin{array}{l}
+		-1-i \\
+		1
+	\end{array}\right) \\
+	&\overrightarrow{x_{1}}(t)=\left(\begin{array}{l}
+		-\cos t-\sin t \\
+		\cos t
+	\end{array}\right)+i\left(\begin{array}{l}
+		\cos t-\sin t \\
+		\sin t
+	\end{array}\right)
+\end{aligned}
+$$
+So the general solution is:
+
+$$
+\vec{x}(t)=c_{1} e^{2 t}\left(\begin{array}{l}
+	-\cos t-\sin t \\
+	\cos t
+\end{array}\right)+c_{2} e^{2 t}\left(\begin{array}{l}
+	\cos t-\sin t \\
+	\sin t
+\end{array}\right)
+$$
+
+\begin{itemize}
+	\item Case 3: Repeated eigenvalue $\lambda_{1}=\lambda_{2}=\lambda$
+\end{itemize}
+
+{\bf  Linear Dependent:}
+
+Two or more vectors are said to be linearly independent if none of them can be written as a linear combination of the others. On the contrary, if at least one of them can be written as a linear combination of the others, then they are said to be linearly dependent.
+
+{\it  1/ One Independent Eigenvector(defective case)}
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda t} \vec{\eta}+c_{2}\left(t . e^{\lambda t} \vec{\eta}+e^{\lambda t} \vec{p}\right)$
+
+{\it 2/ Two Independent Eigenvectors (complete case)}
+
+Then $A=\left[\begin{array}{ll}\lambda & 0 \\ 0 & \lambda\end{array}\right]$
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda t} \overrightarrow{\eta^{(1)}}+c_{2} e^{\lambda t} \overrightarrow{\eta^{(2)}}$
+
+\textbf{A very detailed example:}
+$$\left\{\begin{array}{l}\dot{x}_{1}=-2 x_{1}+x_{2} \\ \dot{x}_{2}=-x_{1}\end{array}\right.$$
+
+With $A=\left[\begin{array}{ll}-2 & 1 \\ -1 & 0\end{array}\right]$, we can get the eigenvectors by find the roots of $\lambda^{2}+2 \lambda+1=0$
+
+Then
+$$\lambda_{1}=\lambda_{2}=\lambda=-1$$
+
+Solve this Linear Algebra problem by using Gaussian Elimination, we get $\vec{\eta}=\left(\begin{array}{l}1 \\ 1\end{array}\right)$ (defective case)
+
+Then, to find $\vec{p}$, this vector must satisfy
+
+$$(A-\lambda I) \vec{p}=\vec{\eta}$$
+
+So we got $\vec{p}=\left(\begin{array}{l}0 \\ 1\end{array}\right)$
+
+So the general solution is:
+
+$\vec{x}(t)=c_{1} e^{-t}\left(\begin{array}{l}1 \\ 1\end{array}\right)+c_{2}\left(t e^{-t}\left(\begin{array}{l}1 \\ 1\end{array}\right)+e^{-t}\left(\begin{array}{l}0 \\ 1\end{array}\right)\right)$
+
+{\bf  4/ Phase-portraits}
+
+Furthermore, we are also interested in the large-time behavior of solutions to IVP Sys. without explicit formulae if they exist. That leads to the "qualitative study" of DSs. It can be done by observing the Vector Field (VF) caused by this system.
+
+Similar to a direction field, a phase portrait is a graphical tool to visualize how the solutions of a given system of differential equations would behave in the long run. (In this context, the Cartesian plane where the phase portrait resides is called the phase plane. The parametric curves traced by the solutions are sometimes also called their trajectories.) To sketch a solution in the phase plane we can pick values of $t$ by making a two-dimensional grid of $x_{1}$ and $x_{2}$ then at each point of the grid, we draw the vector $\left(\dot{x}_{1}, \dot{x}_{2}\right)$.
+
+There are also some steady points in the field, which are defined by $u$ so that $\dot{u}=0(\Leftrightarrow A u=0)$ They are exactly the "eigenvectors" associated with the eigenvalue 0 of the matrix $A$ and the vector 0. The steady states are interesting due to the fact that they do not change . A steady state can be either an "attractor" or a "repeller". If a steady state is a "local attractor", it attracts objects near it while a "global attractor" attracts every object appearing in the VF. On the contrary, a "repeller" $U$ repels every object moving forward to it.
+
+{\bf  Stability}
+
+Before moving to the cases, we will introduce the important idea of stability of an equilibrium point of a dynamical system.
+
+\textbf{Definition 1:} Suppose $\vec{x} \in W$ is an equilibrium of the differential equation $\dot{x}=f(x)$
+
+Then $\vec{x}$ is stable if for every neighborhood $U$ of $\vec{x}$ in $W$ there is a neighborhood $U_{1}$ of $\vec{x}$ in $\vec{x}$ such that every solution $x(t)$ with $x(0)$ in is defined and in $U$ for all $t>0$.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-08}\\
+	FIG. A. Stability.
+\end{center}
+
+
+
+\textbf{Definition 2:} If $U_{1}$ can be chosen so that in addition to the properties described in Definition 1, $\lim _{t \rightarrow \infty} x(t)=\vec{x}$, then $\vec{x}$ is asymptotically stable.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-08(1)}\\
+	FIG. B. Asymptotic stability.
+\end{center}
+
+
+
+\textbf{Definition 3}: An equilibrium $\vec{x}$ that is not stable is call unstable. This means there is a neighborhood $U$ of $\vec{x}$ such that for every neighborhood $U_{1}$ of $\vec{x}$ in $U$, there is at least one solution $x(t)$ starting at $x(0) \in U_{1}$, which does not lie entirely in $U$.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-09}\\
+	FIG. C. Instability.
+\end{center}
+
+
+
+Stability for $2 \times 2$ matrix:
+
+$A=\left[\begin{array}{ll}a & b \\ c & d\end{array}\right]$ is stable if $T=a+d<0$
+
+$D=a d-b c>0$
+
+\begin{itemize}
+	\item Case 1: Distinct real eigenvalue $\lambda_{1} \neq \lambda_{2}$
+\end{itemize}
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda_{1} t} \overline{\eta^{(1)}}+c_{2} e^{\lambda_{2} t} \overline{\eta^{(2)}}$
+
+- When $\lambda_{1}, \lambda_{2}$ both same sign:
+
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-09(1)}\\
+	Phase Portrait of the Nodal Sink
+\end{center}
+
+
+
+Type : Node ( Nodal source if positive, Nodal sink if negative)
+
+Stability: It is unstable if both eigenvalues are positive; asymptotically stable if they are both negative.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-10}\\
+	Phase Portrait of the Nodal Source
+\end{center}
+
+
+- When $\lambda_{1}, \lambda_{2}$ have opposite sign:
+
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-10(1)}\\
+	Phase Portrait of the saddle point
+\end{center}
+
+
+
+This type of critical point is called $a$ saddle point. It is always unstable.
+
+\begin{itemize}
+	\item Case 2: Complex eigenvalue $\lambda_{1}, \lambda_{2}=a \pm b i$
+\end{itemize}
+
+General solution: $\vec{x}(t)=c_{1} e^{a . t} \vec{u}+c_{2} e^{a . t} \vec{v}$
+
+When real part is zero:
+
+This type of critical point is called a center. It has a unique stability classification shared by no other: stable (or neutrally stable).
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-11}\\
+	Phase Portrait of the unstable spiral
+\end{center}
+
+
+
+When real part is nonzero:
+
+This type of critical point is called a spiral point. It is asymptotically stable if $a<0$, it is unstable if $a>$ 0.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-11(1)}\\
+	Phase Portrait of the center point
+\end{center}
+
+
+
+\begin{itemize}
+	\item Case 3: Repeated eigenvalue $\lambda_{1}=\lambda_{2}=\lambda$
+\end{itemize}
+
+1/ One Independent Eigenvector
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda t} \vec{\eta}+c_{2}\left(t . e^{\lambda t} \vec{\eta}+e^{\lambda t} \vec{p}\right)$
+
+This type of critical point is called a improper node or degenerate node. It is asymptotically stable if $\lambda$ $<0$, unstable if $\lambda>0$.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-12}\\
+	The asymptotically stable degenerate node
+\end{center}
+
+
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-12(1)}\\
+	The unstable degenerate node
+\end{center}
+
+
+
+2/ Two Independent Eigenvectors
+
+General solution: $\vec{x}(t)=c_{1} e^{\lambda t} \overrightarrow{\eta^{(1)}}+c_{2} e^{\lambda t} \overrightarrow{\eta^{(2)}}$
+
+This type of critical point is called a proper node or star point. It is asymptotically stable if $\lambda<0$, unstable if $\lambda>0$.
+
+\begin{center}
+	\includegraphics[scale = 0.25]{2022_11_29_c13d32a982035600e5afg-12(2)}\\
+	Phase Portrait of a star node
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercise 1}
+
+\enskip \enskip \enskip The love affair between Romeo and Juliet can be described by the Initial-Value Problem (IVP) or also called the Dynamical System (DS)
+$$
+\left\{\begin{array}{l}
+	\dot{R}=a . R+b . J \\
+	\dot{J}=c . R+d . J
+\end{array} \text { with } R(0)=R_{0}, J(0)=J_{0}\right.
+$$
+
+To solve this problem, our group has found two method: using $2^{\text {nd }}$ ODE, or solving by Linear Algebra knowledge.
+
+{\bf  $1 / 2^{\text {nd }}$ ODE Method (Substituition method)}
+
+$$\left\{\begin{array}{l}\dot{R}=a . R+b . J \\ \dot{J}=c . R+d . J\end{array}\right., \text{\;therefore\;}, R=\frac{1}{c}(\dot{J}-d . J) \Rightarrow \dot{R}=\frac{1}{c}(\ddot{J}-d \dot{J})$$
+
+By substitute $R$ and $\dot{R}$ to first equation, using the method that we have mentioned in [Second Order Differential Equation] section, we could find the solution for $J$ and from that we can find $R$.
+
+{\bf  Example}
+$$
+\left\{\begin{array}{c}
+R^{\prime}=-3 R+3 J \\
+J^{\prime}=-2 R+J \\
+R_0=-4, J_0=2
+\end{array}\right.
+$$
+From the equation of $J$ :
+$$
+\begin{aligned}
+& R=\frac{J}{2}-\frac{J^{\prime}}{2} \\
+& R^{\prime}=\frac{J^{\prime}}{2}-\frac{J^{\prime \prime}}{2}
+\end{aligned}
+$$
+Subtitute $R$ and $R^{\prime}$ into the equation of $R^{\prime}$ :
+$$
+J^{\prime \prime}+2 J^{\prime}+3 J=0
+$$
+Assume that $J=e^{r t}, J^{\prime}=r e^{r t}, J^{\prime \prime}=r^2 e^{r t}$
+$$
+e^{r t}\left(r^2+2 r+3\right)=0
+$$
+Solve the characteristic equation:
+$$
+r=-1+\sqrt{2} i \text { or } r=-1-\sqrt{2} i
+$$
+Then, $J=e^{-t}\left(C_{1 J} \cos \sqrt{2} t+C_{2 J} \sin \sqrt{2} t\right)$
+The same with $R, R=e^{-t}\left(C_{1 R} \cos \sqrt{2} t+C_{2 R} \sin \sqrt{2} t\right)$
+Subtitute the initial value $R(0)=-4, J(0)=2$ into two general solution:
+The exact solution:
+$$
+\left\{\begin{array}{l}
+R=e^{-t}(7 \sqrt{2} \cos \sqrt{2} t-4 \sin \sqrt{2} t) \\
+J=e^{-t}(2 \cos \sqrt{2} t+6 \sqrt{2} \sin \sqrt{2} t)
+\end{array}\right.
+$$
+
+{\bf  2/ Linear Algebra Approach (Eigenvalue method)}
+
+Firstly, we need to transform this system into vector from
+
+$\left\{\begin{array}{l}\dot{u}=A u \\ u(0)=u_{0}\end{array}\right.$ where $A=\left(\begin{array}{ll}a & b \\ c & d\end{array}\right), u=\left(\begin{array}{ll}R & J\end{array}\right)^{T}, u_{0}=\left(\begin{array}{ll}R_{0} & J_{0}\end{array}\right)^{T}, T$ denotes the transpose
+operator.
+
+By using some steps we have mention in [General Solution] section, you can find the solution to this system, which is the same to first method.
+
+\begin{center}
+	\begin{tabular}{ccccl}
+		\hline $\operatorname{Re} \lambda_1$ & $\operatorname{Re} \lambda_2$ & $\left|\operatorname{Im} \lambda_1\right|$ & $\left|\operatorname{Im} \lambda_2\right|$ & Type \\
+		\hline
+            $+$ & $+$ & 0 & 0 & Nodal source \\
+            $-$ & $-$ & 0 & 0 & Nodal sink \\
+            $+$ & $-$ & 0 & 0 & Saddle point \\
+            $-$ & $+$ & 0 & 0 & Saddle point \\
+            0 & 0 & $+$ & $+$ & Center \\
+            $+$ & $+$ & $+$ & $+$ & Spiral source \\
+            $-$ & $-$ & $+$ & $+$ & Spiral sink \\
+        Two independent& eigenvectors& for repeated& values  & Star node \\
+        One independent& eigenvector& for repeated& values  & Degenerate node \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	
+	Tab. 2: Phase-portrait classification
+	
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercise 2}
+	\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+4&1\\
+2&2
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:3 + }}\sqrt 3  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{1 + \sqrt 3 }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:3 - }}\sqrt 3  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 3  + 1}\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,{\rm{Eager}}\,{\rm{Beaver}}\,and\,Eager\,Beaver\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{3 + \sqrt 3 }}{{12}},{\rm{ }}{{\rm{c}}_2} = \frac{{3 - \sqrt 3 }}{{12}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{3 + 2\sqrt 3 }}{6}{e^{(3 + \sqrt 3 )t}} + \frac{{3 - 2\sqrt 3 }}{6}{e^{(3 - \sqrt 3 )t}}}\\
+{J(t) = \frac{{3 + \sqrt 3 }}{6}{e^{(3 + \sqrt 3 )t}} + \frac{{3 - \sqrt 3 }}{6}{e^{(3 - \sqrt 3 )t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EE1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EE1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Nodal\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&3\\
+3&2
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:}}\frac{{{\rm{3 + }}\sqrt {37} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 + \sqrt {37} }\\
+6
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{{\rm{3 - }}\sqrt {37} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 - \sqrt {37} }\\
+6
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,{\rm{Eager}}\,{\rm{Beaver}}\,and\,Eager\,Beaver\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{2 - \sqrt {37} }}{{6\sqrt {37} }},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 2 - \sqrt {37} }}{{6\sqrt {37} }}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{37 - 13\sqrt {37} }}{{74}}{e^{\frac{{3 + \sqrt {37} }}{2}t}} + \frac{{37 + 13\sqrt {37} }}{{74}}{e^{\frac{{3 - \sqrt {37} }}{2}t}}}\\
+{J(t) = \frac{{ - 37 + 2\sqrt {37} }}{{37}}{e^{\frac{{3 + \sqrt {37} }}{2}t}} + \frac{{ - 37 - 2\sqrt {37} }}{{37}}{e^{\frac{{3 - \sqrt {37} }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EE2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EE2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+3&2\\
+{ - 1}&3
+\end{array}} \right),R\left( 0 \right) = 2,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:3 + }}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 2 i}\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue:3 - }}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{\sqrt 2 i}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} =  - \sqrt 2 ,{\rm{ }}{{\rm{c}}_2} =  - 2\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) =  - 2{e^{3t}}(\sqrt 2 \sin (\sqrt 2 t)) - \sqrt 2 {e^{3t}}( - \sqrt 2 \cos (\sqrt 2 t))}\\
+{J(t) =  - 2{e^{3t}}\cos (\sqrt 2 t) - \sqrt 2 {e^{3t}}\sin (\sqrt 2 t)}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EN1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EN1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+3&2\\
+{ - 1}&4
+\end{array}} \right),R\left( 0 \right) = 3,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue:}}\frac{7}{2}{\rm{ + }}\frac{{\sqrt 7 }}{2}i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{1 - \sqrt 7 i}\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{7}{2} - \frac{{\sqrt 7 }}{2}i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{1 + \sqrt 7 i}\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{ - \sqrt 7 }}{2},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 1}}{2}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) =  - \frac{1}{2}{e^{\frac{7}{2}t}}(\cos (\frac{{\sqrt 7 }}{2}t) + \sqrt 7 \sin (\frac{{\sqrt 7 }}{2}t)) - \frac{{\sqrt 7 }}{2}{e^{\frac{7}{2}t}}( - \sqrt 7 \cos (\frac{{\sqrt 7 }}{2}t) + \sin (\frac{{\sqrt 7 }}{2}t))}\\
+{J(t) =  - \frac{1}{2}{e^{\frac{7}{2}t}}(2\cos (\frac{{\sqrt 7 }}{2}t)) - \frac{{\sqrt 7 }}{2}{e^{\frac{7}{2}t}}(2\sin (\frac{{\sqrt 7 }}{2}t))}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EN2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EN2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&1\\
+3&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:2}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+1\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 2}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Cautious\,Lover\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{5}{4},{\rm{ }}{{\rm{c}}_2} = \frac{1}{4}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{5}{4}{e^{2t}} + \frac{{ - 1}}{4}{e^{ - 2t}}}\\
+{J(t) = \frac{5}{4}{e^{2t}} + \frac{3}{4}{e^{ - 2t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EC1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EC1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&1\\
+2&{ - 3}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue: - 1 + }}\sqrt 6  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{2 + \sqrt 6 }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 1 - }}\sqrt 6  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{2 - \sqrt 6 }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Cautious\,Lover\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{6 - \sqrt 6 }}{{12}},{\rm{ }}{{\rm{c}}_2} = \frac{{6 + \sqrt 6 }}{{12}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{3 + 2\sqrt 6 }}{6}{e^{{\rm{( - 1 + }}\sqrt 6 )t}} + \frac{{3 - 2\sqrt 6 }}{6}{e^{{\rm{( - 1 - }}\sqrt 6 )t}}}\\
+{J(t) = \frac{{6 - \sqrt 6 }}{6}{e^{{\rm{( - 1 + }}\sqrt 6 )t}} + \frac{{6 + \sqrt 6 }}{6}{e^{{\rm{( - 1 - }}\sqrt 6 )t}}}
+\end{array}} \right.
+\end{array}\]
+%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EC2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EC2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&2\\
+{ - 2}&{ - 3}
+\end{array}} \right),R\left( 0 \right) = 2,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue: - 1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Hermit\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} =  - 1,{\rm{ }}{{\rm{c}}_2} =  - 2\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = {e^{ - t}} - 2{e^{ - t}}( - t - \frac{1}{2})}\\
+{J(t) =  - {e^{ - t}} - 2{e^{ - t}}(t)}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EH1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EH1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Degenerate\,node\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+2&2\\
+{ - 1}&{ - 2}
+\end{array}} \right),R\left( 0 \right) = 3,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:}}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 2 - \sqrt 2 }\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - }}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 2 + \sqrt 2 }\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Eager\,Beaver\,and\,Hermit\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{2 - 5\sqrt 2 }}{4},{\rm{ }}{{\rm{c}}_2} = \frac{{2 + 5\sqrt 2 }}{4}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{3 + 4\sqrt 2 }}{2}{e^{\sqrt 2 t}} + \frac{{3 - 4\sqrt 2 }}{2}{e^{ - \sqrt 2 t}}}\\
+{J(t) = \frac{{2 - 5\sqrt 2 }}{4}{e^{\sqrt 2 t}} + \frac{{2 + 5\sqrt 2 }}{4}{e^{ - \sqrt 2 t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EH2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{EH2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+2&{ - 1}\\
+{ - 2}&3
+\end{array}} \right),R\left( 0 \right) = 4,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:4}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+1\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} =  - 2,{\rm{ }}{{\rm{c}}_2} = 2\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = 2{e^{4t}} + 2{e^t}}\\
+{J(t) =  - 4{e^{4t}} + 2{e^t}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NN1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NN1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Nodal\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&{ - 3}\\
+{ - 1}&4
+\end{array}} \right),R\left( 0 \right) = 0,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}\frac{{5 + \sqrt {21} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 - \sqrt {21} }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{5 - \sqrt {21} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 + \sqrt {21} }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{7 + \sqrt {21} }}{{14}},{\rm{ }}{{\rm{c}}_2} = \frac{{7 - \sqrt {21} }}{{14}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{ - 2\sqrt {21} }}{7}{e^{\frac{{5 + \sqrt {21} }}{2}t}} + \frac{{  2\sqrt {21} }}{7}{e^{\frac{{5 - \sqrt {21} }}{2}t}}}\\
+{J(t) = \frac{{7 + \sqrt {21} }}{7}{e^{\frac{{5 + \sqrt {21} }}{2}t}} + \frac{{7 - \sqrt {21} }}{7}{e^{\frac{{5 - \sqrt {21} }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NN2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NN2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Nodal\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+2&{ - 2}\\
+3&2
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:2 - }}\sqrt 6 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 6 i}\\
+3
+\end{array}} \right)\\
+{\rm{Eigenvalue:2 + }}\sqrt 6 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{\sqrt 6 i}\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Eager\,Beaver\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = {e^{2t}}( - \frac{{\sqrt 6 }}{3}\sin (\sqrt 6 t)) + \frac{{\sqrt 6 }}{2}{e^{2t}}(\frac{{\sqrt 6 }}{3}\cos (\sqrt 6 t))}\\
+{J(t) = {e^{2t}}\cos (\sqrt 6 t) + \frac{{\sqrt 6 }}{2}{e^{2t}}\sin (\sqrt 6 t)}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NE1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NE1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+0&{ - 2}\\
+1&0
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:}}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{\sqrt 2 i}\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - }}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 2 i}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Eager\,Beaver\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) =  - \sqrt 2 \sin (\sqrt 2 t) + \frac{{\sqrt 2 }}{2}(\sqrt 2 \cos (\sqrt 2 t))}\\
+{J(t) = \cos (\sqrt 2 t) + \frac{{\sqrt 2 }}{2}\sin (\sqrt 2 t)}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NE2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NE2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Center\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+2&{ - 2}\\
+3&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}\frac{1}{2} - \frac{{\sqrt {15} }}{2}i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 - \sqrt {15} i}\\
+6
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{1}{2} + \frac{{\sqrt {15} }}{2}i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 + \sqrt {15} i}\\
+6
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Cautious\,Lover\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = {e^{\frac{t}{2}}}\cos (\frac{{t\sqrt {15} }}{2}) - \frac{{\sqrt {15} }}{3}{e^{\frac{t}{2}}}\sin (\frac{{t\sqrt {15} }}{2})}\\
+{J(t) = 2{e^{\frac{t}{2}}}\cos (\frac{{t\sqrt {15} }}{2})}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NC1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NC1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,source\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&{ - 1}\\
+1&{ - 2}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:}}\frac{{ - 1 + \sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 + \sqrt 5 }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{ - 1 - \sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{3 - \sqrt 5 }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Cautious\,Lover\\
+{\rm{Using}}{\mkern 1mu} {\rm{R}}({\rm{0}}),{\rm{J}}({\rm{0}}) \to {{\rm{c}}_1} = \frac{{5 - \sqrt 5 }}{{20}},{{\rm{c}}_2} = \frac{{5 + \sqrt 5 }}{{20}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{5 + \sqrt 5 }}{{10}}{e^{\frac{{ - 1 + \sqrt 5 }}{2}t}} + \frac{{5 - \sqrt 5 }}{{10}}{e^{\frac{{ - 1 - \sqrt 5 }}{2}t}}}\\
+{J(t) = \frac{{5 - \sqrt 5 }}{{10}}{e^{\frac{{ - 1 + \sqrt 5 }}{2}t}} + \frac{{5 + \sqrt 5 }}{{10}}{e^{\frac{{ - 1 - \sqrt 5 }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NC2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NC2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+1&{ - 1}\\
+{ - 1}&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 - \sqrt 2 }\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - }}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 + \sqrt 2 }\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Hermit\\
+{\rm{Using}}{\mkern 1mu} {\rm{R}}({\rm{0}}),{\rm{J}}({\rm{0}}) \to {{\rm{c}}_1} = \frac{{4 - 3\sqrt 2 }}{4},{{\rm{c}}_2} = \frac{{4 + 3\sqrt 2 }}{4}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{2 - \sqrt 2 }}{4}{e^{\sqrt 2 t}} + \frac{{2 + \sqrt 2 }}{4}{e^{ - \sqrt 2 t}}}\\
+{J(t) = \frac{{4 - 3\sqrt 2 }}{4}{e^{\sqrt 2 t}} + \frac{{4 + 3\sqrt 2 }}{4}{e^{ - \sqrt 2 t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NH1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NH1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+2&{ - 1}\\
+{ - 3}&{ - 2}
+\end{array}} \right),R\left( 0 \right) =  - 1,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:}}\sqrt 7  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 2 - \sqrt 7 }\\
+3
+\end{array}} \right)\\
+{\rm{Eigenvalue: - }}\sqrt 7  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 2 + \sqrt 7 }\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Narcissistic\,Nerd\,and\,Hermit\\
+{\rm{Using}}{\mkern 1mu} {\rm{R}}({\rm{0}}),{\rm{J}}({\rm{0}}) \to {{\rm{c}}_1} = \frac{{ - 2 + \sqrt 7 }}{6},{{\rm{c}}_2} = \frac{{ - 2 - \sqrt 7 }}{6}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) =  - \frac{1}{2}{e^{\sqrt 7 t}} - \frac{1}{2}{e^{ - \sqrt 7 t}}}\\
+{J(t) = \frac{{ - 2 + \sqrt 7 }}{2}{e^{\sqrt 7 t}} + \frac{{ - 2 - \sqrt 7 }}{2}{e^{ - \sqrt 7 t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NH2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{NH2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 1}&2\\
+3&{ - 2}
+\end{array}} \right),R\left( 0 \right) = 3,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue:1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+1\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 4}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 2}\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Cautious\,Lover\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = 1.4,{\rm{ }}{{\rm{c}}_2} =  - 0.8\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = 1.4{e^t} + 1.6{e^{ - 4t}}}\\
+{J(t) = 1.4{e^t} - 2.4{e^{ - 4t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CC1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CC1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&3\\
+3&{ - 4}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 4\\
+{\rm{Eigenvalue: - 3 + }}\sqrt {10}  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{1 + \sqrt {10} }\\
+3
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 3 - }}\sqrt {10}  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{1 - \sqrt {10} }\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Cautious\,Lover\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{40 - \sqrt {10} }}{{60}},{\rm{ }}{{\rm{c}}_2} = \frac{{40 + \sqrt {10} }}{{60}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{10 + 13\sqrt {10} }}{{20}}{e^{({\rm{ - 3 + }}\sqrt {10} )t}} + \frac{{10 - 13\sqrt {10} }}{{20}}{e^{({\rm{ - 3 - }}\sqrt {10} )t}}}\\
+{J(t) = \frac{{40 - \sqrt {10} }}{{20}}{e^{({\rm{ - 3 + }}\sqrt {10} )t}} + \frac{{40 + \sqrt {10} }}{{20}}{e^{({\rm{ - 3 - }}\sqrt {10} )t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CC2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CC2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+$A = \begin{pmatrix}
+  -2 & 3\\
+  4 & 2
+\end{pmatrix}$, 
+R(0)=1, J(0)=1\\
+Eigenvalue: 4 $\to$ Eigenvector:$\left( \begin{matrix}
+  \frac{1}{2} \\ 
+  1 \\ 
+\end{matrix} \right)$ \\
+Eigenvalue: -4$\to$ Eigenvector: $\left( \begin{matrix}
+  \frac{-3}{2} \\ 
+  1 \\ 
+\end{matrix} \right)$\\
+$\to$Name of case: Cautious Lover and Eager Beaver\\
+$\Rightarrow$General solution:
+Using $R(0),J(0)\Rightarrow {{c}_{1}}=\frac{5}{8},{{c}_{2}}=\frac{-1}{8}$\\
+Final solution:\\
+\begin{math}
+R(t)=\frac{5}{8}{{e}^{4t}}+\frac{3}{8}{{e}^{-4t}}\\
+J(t)=\frac{10}{8}{{e}^{4t}}+\frac{-2}{8}{{e}^{-4t}}
+\end{math}
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CE1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CE1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&1\\
+1&0
+\end{array}} \right),R\left( 0 \right) =  - 1,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue: - 1 + }}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 + \sqrt 2 }\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 1 - }}\sqrt 2  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 - \sqrt 2 }\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Eager\,Beaver\\
+{\rm{Using}}\,{\rm{R(0),}}\,{\rm{J(0):}}\,{{\rm{c}}_1} = \frac{{ - 1 - \sqrt 2 }}{2},\,{{\rm{c}}_2} = \frac{{ - 1 + \sqrt 2 }}{2}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{ - 1}}{2}{e^{({\rm{ - 1 + }}\sqrt 2 )t}} - \frac{1}{2}{e^{({\rm{ - 1 - }}\sqrt 2 )t}}}\\
+{J(t) = \frac{{ - 1 - \sqrt 2 }}{2}{e^{({\rm{ - 1 + }}\sqrt 2 )t}} + \frac{{ - 1 + \sqrt 2 }}{2}{e^{({\rm{ - 1 - }}\sqrt 2 )t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CE2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CE2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&3\\
+{ - 1}&3
+\end{array}} \right),R\left( 0 \right) = 0,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}\frac{{1 + \sqrt {13} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{5 - \sqrt {13} }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{1 - \sqrt {13} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{5 + \sqrt {13} }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{13 + 5\sqrt {13} }}{{26}},{\rm{ }}{{\rm{c}}_2} = \frac{{13 - 5\sqrt {13} }}{{26}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{6\sqrt {13} }}{{13}}{e^{\frac{{1 + \sqrt {13} }}{2}t}} + \frac{{ - 6\sqrt {13} }}{{13}}{e^{\frac{{1 - \sqrt {13} }}{2}t}}}\\
+{J(t) = \frac{{13 + 5\sqrt {13} }}{{13}}{e^{\frac{{1 + \sqrt {13} }}{2}t}} + \frac{{13 - 5\sqrt {13} }}{{13}}{e^{\frac{{1 - \sqrt {13} }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CN1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CN1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 3}&1\\
+{ - 2}&2
+\end{array}} \right),R\left( 0 \right) =  - 1,J\left( 0 \right) = 3\\
+{\rm{Eigenvalue:}}\frac{{ - 1 + \sqrt {17} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{5 - \sqrt {17} }\\
+4
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{ - 1 - \sqrt {17} }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{5 + \sqrt {17} }\\
+4
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{3\sqrt {17}  + 19}}{{8\sqrt {17} }},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 19\sqrt {17}  + 51}}{{136}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{11 - \sqrt {17} }}{{2\sqrt {17} }}{e^{\frac{{ - 1 + \sqrt {17} }}{2}t}} + \frac{{ - 17 - 11\sqrt {17} }}{{34}}{e^{\frac{{ - 1 - \sqrt {17} }}{2}t}}}\\
+{J(t) = \frac{{3\sqrt {17}  + 19}}{{2\sqrt {17} }}{e^{\frac{{ - 1 + \sqrt {17} }}{2}t}} + \frac{{ - 19\sqrt {17}  + 51}}{{34}}{e^{\frac{{ - 1 - \sqrt {17} }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CN2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CN2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 1}&1\\
+{ - 1}&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue: - 1 - i}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+i\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 1 + i}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - i}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Hermit\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = {e^{ - t}}\sin t + {e^{ - t}}\cos t}\\
+{J(t) = {e^{ - t}}\cos t - {e^{ - t}}\sin t}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CH1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CH1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,sink\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&1\\
+{ - 1}&{ - 2}
+\end{array}} \right),R\left( 0 \right) = 2,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue: - 2 - i}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+i\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 2 + i}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - i}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Cautious\,Lover\,and\,Hermit\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = 2{e^{ - 2t}}\sin t + 2{e^{ - 2t}}\cos t}\\
+{J(t) = 2{e^{ - 2t}}\cos t - 2{e^{ - 2t}}\sin t}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CH2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{CH2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,sink\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&{ - 1}\\
+{ - 1}&{ - 3}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:}}\frac{{{\rm{ - 5 + }}\sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 - \sqrt 5 }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{{\rm{ - 5 - }}\sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1 + \sqrt 5 }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Hermit\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{ - 1}}{2},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 1}}{2}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{1 + \sqrt 5 }}{2}{e^{\frac{{{\rm{ - 5 + }}\sqrt 5 }}{2}t}} + \frac{{1 - \sqrt 5 }}{2}{e^{\frac{{{\rm{ - 5 - }}\sqrt 5 }}{2}t}}}\\
+{J(t) =  - {e^{\frac{{{\rm{ - 5 + }}\sqrt 5 }}{2}t}} - {e^{\frac{{{\rm{ - 5 - }}\sqrt 5 }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HH1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HH1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Nodal\,sink\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 1}&0\\
+0&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue: - 1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+1\\
+0
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+0\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Hermit\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = 1,{\rm{ }}{{\rm{c}}_2} =  - 1\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = {e^{ - t}}}\\
+{J(t) =  - {e^{ - t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HH2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HH2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Star\,node\]
+%%%%%%%%%%%%%
+
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&{ - 1}\\
+1&1
+\end{array}} \right),R\left( 0 \right) = 0,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}\frac{{ - 1 + \sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 3 + \sqrt 5 }\\
+2
+\end{array}} \right)\\
+{\rm{Eigenvalue:}}\frac{{ - 1 - \sqrt 5 }}{2} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 3 - \sqrt 5 }\\
+2
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Eager\,Beaver\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{3 + \sqrt 5 }}{{2\sqrt 5 }},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 3 + \sqrt 5 }}{{2\sqrt 5 }}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{ - 2\sqrt 5 }}{5}{e^{\frac{{ - 1 + \sqrt 5 }}{2}t}} + \frac{{2\sqrt 5 }}{5}{e^{\frac{{ - 1 - \sqrt 5 }}{2}t}}}\\
+{J(t) = \frac{{5 + 3\sqrt 5 }}{5}{e^{\frac{{ - 1 + \sqrt 5 }}{2}t}} + \frac{{5 - 3\sqrt 5 }}{5}{e^{\frac{{ - 1 - \sqrt 5 }}{2}t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HE1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HE1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 3}&{ - 1}\\
+4&2
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue:1}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+4
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 2}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Eager\,Beaver\\
+{\rm{Using}}\,{\rm{R(0), J(0)}} \to {{\rm{c}}_1} = \frac{{ - 1}}{3},{\rm{ }}{{\rm{c}}_2} = \frac{{ - 2}}{3}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{1}{3}{e^t} + \frac{2}{3}{e^{ - 2t}}}\\
+{J(t) = \frac{{ - 4}}{3}{e^t} + \frac{{ - 2}}{3}{e^{ - 2t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HE2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HE2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&{ - 2}\\
+{ - 1}&2
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 1\\
+{\rm{Eigenvalue:}}\sqrt 6  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{2 - \sqrt 6 }\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - }}\sqrt 6  \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{2 + \sqrt 6 }\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R}}({\rm{0}}),{\rm{J}}({\rm{0}}) \to {{\rm{c}}_1} = \frac{{6 + \sqrt 6 }}{{12}},{{\rm{c}}_2} = \frac{{6 - \sqrt 6 }}{{12}}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{3 - 2\sqrt 6 }}{6}{e^{\sqrt 6 t}} + \frac{{3 + 2\sqrt 6 }}{6}{e^{ - \sqrt 6 t}}}\\
+{J(t) = \frac{{6 + \sqrt 6 }}{{12}}{e^{\sqrt 6 t}} + \frac{{6 - \sqrt 6 }}{{12}}{e^{ - \sqrt 6 t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HN1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HN1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 1}&{ - 3}\\
+{ - 1}&1
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) = 2\\
+{\rm{Eigenvalue:}}2 \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - 1}\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 2}} \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+3\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Narcissistic\,Nerd\\
+{\rm{Using}}\,{\rm{R}}({\rm{0}}),{\rm{J}}({\rm{0}}) \to {{\rm{c}}_1} = \frac{5}{4},{{\rm{c}}_2} = \frac{3}{4}\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{ - 5}}{4}{e^{2t}} + \frac{9}{4}{e^{ - 2t}}}\\
+{J(t) = \frac{5}{4}{e^{2t}} + \frac{3}{4}{e^{ - 2t}}}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HN2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HN2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Saddle\,point\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 1}&{ - 1}\\
+3&{ - 1}
+\end{array}} \right),R\left( 0 \right) = 1,J\left( 0 \right) =  - 2\\
+{\rm{Eigenvalue: - 1 - }}\sqrt 3 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 3 i}\\
+3
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 1 + }}\sqrt 3 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{\sqrt 3 i}\\
+3
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Cautious\,Lover\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) = \frac{{ - 2}}{3}{e^{ - t}}( - \sqrt 3 \sin (\sqrt 3 t)) + \frac{{\sqrt 3 }}{3}{e^{ - t}}(\sqrt 3 \cos (\sqrt 3 t))}\\
+{J(t) = \frac{{ - 2}}{3}{e^{ - t}}(3\cos (\sqrt 3 t)) + \frac{{\sqrt 3 }}{3}{e^{ - t}}(3\sin (\sqrt 3 t))}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HC1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HC1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,sink\]
+%%%%%%%%%%%%%
+\[\begin{array}{l}
+A = \left( {\begin{array}{*{20}{c}}
+{ - 2}&{ - 2}\\
+1&{ - 2}
+\end{array}} \right),R\left( 0 \right) = 2,J\left( 0 \right) =  - 1\\
+{\rm{Eigenvalue: - 2 - }}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{ - \sqrt 2 i}\\
+1
+\end{array}} \right)\\
+{\rm{Eigenvalue: - 2 + }}\sqrt 2 i \to {\rm{Eigenvector:}}\left( {\begin{array}{*{20}{c}}
+{\sqrt 2 i}\\
+1
+\end{array}} \right)\\
+ \to {\rm{Name}}\,{\rm{of}}\,{\rm{case:}}\,Hermit\,and\,Cautious\,Lover\\
+{\rm{Final}}\,{\rm{solution:}}\\
+\left\{ {\begin{array}{*{20}{c}}
+{R(t) =  - {e^{ - 2t}}( - \sqrt 2 \sin (\sqrt 2 t)) + \sqrt 2 {e^{ - 2t}}(\sqrt 2 \cos (\sqrt 2 t))}\\
+{J(t) =  - {e^{ - 2t}}\cos (\sqrt 2 t) + \sqrt 2 {e^{ - 2t}}\sin (\sqrt 2 t)}
+\end{array}} \right.
+\end{array}\]
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HC2s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{HC2p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+\[  \to  Type\,of\,steady\,point:\,Spiral\,sink\]
+%%%%%%%%%%%%%
+\textbf{Our Python Code for plotting}
+\begin{code}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as font_manager
+%matplotlib inline
+\end{code}
+\textbf{This is our source code for plotting the figure}
+\begin{code}{python}
+t = np.linspace(0, 4, 100)
+#change function
+R = ((1.4 + 0*np.sqrt(10))/1)*(np.e**((1 + 0*np.sqrt(10))*t/1)) + ((1.6 + 0*np.sqrt(10))/1)*(np.e**((-4 + 0*np.sqrt(10))*t/1))
+J = ((1.4 + 0*np.sqrt(10))/1)*(np.e**((1 + 0*np.sqrt(10))*t/1)) + ((-2.4 + 0*np.sqrt(10))/1)*(np.e**((-4 + 0*np.sqrt(10))*t/1))
+
+#
+plt.figure(figsize = (7, 7))
+font = font_manager.FontProperties(family='Arial',
+                                   weight='normal',
+                                   style='normal', size=14)
+plt.plot(t, R)
+plt.plot(t, J)
+
+#change title
+plt.title("LOVE BETWEEN A CAUTIOUS LOVER\nAND CAUTIOUS LOVER")
+#
+plt.xlabel("Time", {'size':14})
+plt.ylabel("Love for the other", {'size':14})
+plt.legend(["Romeo's", "Juliet's"], loc = "best", prop=font)
+plt.show()
+\end{code}
+\textbf{This is our source code for plotting the phase potrait}
+\begin{code}{python}
+plt.figure(figsize=(7, 7))
+plt.plot(R, J, color = "red")
+plt.xlim([-4.4, 4.4])
+plt.ylim([-4.4, 4.4])
+
+R = np.linspace(-4.4, 4.4, 9)
+#change nullcline
+plt.plot(R, R*1/2, linestyle = "--", color = "blue")
+plt.plot(R,  3/2 * R, linestyle = "--", color = "purple")
+
+R, J = np.meshgrid(np.linspace(-4, 4, 9),np.linspace(-4, 4, 9))
+#change a, b, c, d
+_R = -1 * R + 2 * J
+_J = 3 * R + -2 * J
+
+M = (np.hypot(_R, _J))
+M[M == 0] = 1
+_R /= M
+_J /= M
+
+#change title
+plt.title("LOVE BETWEEN A CAUTIOUS LOVER\nAND CAUTIOUS LOVER")
+#
+plt.xlabel("Romeo's love for Juliet", {'size':14})
+plt.ylabel("Juliet's love for Romeo", {'size':14})
+plt.quiver(R, J, _R, _J, color = 'g', width = 0.005)
+plt.streamplot(R, J, _R, _J, density = 0.2, linewidth = 1, color = "gray", broken_streamlines = False)
+plt.legend(["Trajectory", "Nullcline 1", "Nullcline 2", "Vector field", "Trajectory"], loc = "upper left")
+plt.show()
+\end{code}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Exercise 3}
+Assumed that the love between Romeo and Juliet is perturbed by outer conditions. In this case, the love is modeled by the IVP
+$$
+\left\{\begin{array}{l}
+	\dot{R}=a R+b J+f(t), \\
+	\dot{J}=c R+d J+g(t) \\
+	R(0)=R_{0}, J(0)=J_{0}
+\end{array} .\right.
+$$
+
+This is call Non-homogeneous system of Differential Equation.
+
+Consider a general form of non-homogeneous system of Differential Equation
+
+$$
+\vec{x}^{\prime}=A \vec{x}+\vec{h}(t)
+$$
+
+Now let's mention a little bit about the Picard theorem with Lipschitz condition:
+
+The \textbf{Picard-Lindelöf theorem} guarantees a unique solution on some interval containing $t_{0}$ if $h$ is continuous on a region containing $t_{0}$ and $y_{0}$ and satisfies the \textbf{Lipschitz condition} on the variable $y$. The proof of this theorem proceeds by reformulating the problem as an equivalent integral equation. The integral can be considered an operator which maps one function into another, such that the solution is a fixed point of the operator.
+
+The \textbf{Banach fixed point theorem} is then invoked to show that there exists a unique fixed point, which is the solution of the initial value problem. With contraction mapping $0<C<1 \rightarrow \exists u \mid f(u)=u$
+
+This is called "fixed point"
+
+{\bf  Lipschitz Continuity}
+A function $f$ from $S \subset \mathbb{R}^{n}$ into is $\underline{L i p s c h i t z   C o n t i n u o s}$ at $x \in S$ if there is a constant $C$ such that
+
+$$
+\|f(y)-f(x)\| \leq C\|y-x\|
+$$
+
+For all $y \in S$ sufficiently near $x$.
+
+\textbf{Summarizing, we have}
+
+Differentiable/integrable at $x \Rightarrow$ continuous at $x \Rightarrow$ Lipchitz continuous at $x$.
+
+but
+$$
+\text { differentiable/integrable at } x \stackrel{\text { cannot }}{\Leftarrow} \text { continuous at } x \stackrel{\text { cannot }}{\Leftarrow} \text { Lipschitz continuous at } x \text {. }
+$$
+
+{\bf  Picard's Existence Theorem}
+
+If is a continuous function that satisfies the Lipschitz Continuity
+
+$$\int_{t_{0}}^{t} u^{\prime} d u=\int_{t_{0}}^{t} A u d u$$
+$$\Leftrightarrow u(t)=u\left(t_{o}\right)+\int_{t_{0}}^{t} A u d u$$
+
+Or we can write:
+$$y_{n+1}(x)=y_{n}(x)+\int_{x_{0}}^{x} f\left(t, y_{n}(t)\right) d t$$
+
+This will produce a sequence of approximating solutions $y_{0}(x), y_{1}(x), y_{2}(x), \ldots \rightarrow y_{n}(x)$.
+$$x_{m}(t)=K^{m}\left(x_{0}\right)(t)$$
+With $K(x)(t)=x_{0}+\int_{t_{0}}^{t} f(s, x(s)) d s$
+
+It's a linear system of odes, then you have that
+$$
+f^{\prime}(t)=A f(t)+d(t)
+$$
+
+Suppose that $d$ is defined on some interval $I \subseteq \mathbb{R}$. Then sufficient conditions for the existence and uniqueness of are that $d$ is continuous functions satisfies Lipschitz condition. That is, if $d: J \rightarrow \mathbb{R}^{n}$ are continuous, then for every $x \in \mathbb{R}^{n}, t_{0} \in J$ there exists a unique continuous function $f: J \rightarrow \mathbb{R}^{n}$ such that $f\left(t_{0}\right)=x$ and
+$$
+f(t)=x_{0}+\int_{t_{0}}^{t}[A f(s)+d(s)] d s
+$$
+holds for all $t \in J$, A proof for this is can be found page 54 of this book.
+
+Moreover, apparently $d$ being measurable and locally integrable is sufficient to guarantee the conclusion above. By locally integrable I mean that for all $a, b \in J$.
+
+$$
+\int_{a}^{b}\|d(t)\| d t<\infty
+$$
+
+\textbf{Definition}: $C[a, b]$ denote the set of all functions that are continuous on $[a, b]$. If $y \in C$, then norm of $y$ is $\|y\|:=\max _{x \in[a, b]}\|y(x)\|$.
+
+\textbf{Definition}: A sequence $\left\{y_{n}(x)\right\}$ of functions in $C[a, b]$ converges uniformly to a function $y \in C[a, b]$ iff
+$$\lim _{n \rightarrow \infty}\left\|y_{n}-y\right\|=0$$
+
+Uniform convergence is particularly useful in that if a sequence of differentiable (and therefore continuous) functions is uniformly convergent, then the function to which it converges is also continuous.
+
+In a surrounding of $\left(x_{0}, t_{0}\right) \in \Omega \subset \mathbb{R}^{n} \times \mathbb{R}=\left\{(x, t):\left|x-x_{0}\right|<b,\left|t-t_{0}\right|<a\right\}$, then the differentiation equation
+$$\dot{x}=f(x, t)$$
+$$x\left(t_{0}\right)=x_{0}$$
+
+Has a unique solution in the interval $\left|t-t_{0}\right|<d$, where $d=\min (a, b / B)$, min denotes the minimum, $B=\sup |f(t, x)|$ sup denotes the supremum.\\
+\textbf{Summarized Picard's existence and uniqueness theorem}\\
+Given $\dot{y}=f(t, y), y\left(t_0\right)=y_0$
+If $f(t, y)$ is continuous near $\left(t_0, y_0\right)$ a solution exist,
+If $\frac{d f}{d y}$ is also continuous near $\left(t_0, y_0\right)$ solution is unique.
+It's a linear system of odes, then you have that
+$$
+f^{\prime}(t)=A f(t)+d(t)
+$$
+Suppose that $d$ is defined on some interval $I \subseteq \mathbb{R}$. Then sufficient conditions for the existence and uniqueness of are that $d$ is continuous functions satisfies Lipchitz condition.
+That is, if $d: J \rightarrow \mathbb{R}^n$ are continuous, then for every $x \in \mathbb{R}^n, t_0 \in J$ there exists a unique continuous function $f: J \rightarrow \mathbb{R}^n$ such that $f\left(t_0\right)=x$ and
+$$
+f(t)=x_0+\int_{t_0}^t[A f(s)+d(s)] d s
+$$
+holds for all $t \in J$, A proof for this is can be found page 54 of Linear Systems by Panos J.Antsaklis.\\
+ \textbf{The general solution to this system will be in form of : } \\
+ \begin{center}$\vec{x}=\vec{x}_{c}(t)+\vec{x}_{P}$ \end{center}
+
+With $\vec{x}_{c}(t)$ is the solution for system $\vec{x}^{\prime}=A \vec{x}$
+
+From $\vec{x}_{c}(t)$ we can find the "solution matrix" $\mathrm{X}$ as mentioned before, then we need to find the inverse matrix $X^{-1}$. Now do the multiplication $X^{-1} \vec{g}(t)$,
+
+Then do the integral $\int X^{-1} \vec{g}(t) d t$ (Note: do the integral of matrix is do the integral for each element inside that matrix)
+
+We can now get $\vec{x}_{P}=X \int X^{-1} \vec{g}(t) d t$.
+
+So, to have the solution for problem $\left\{\begin{array}{l}\dot{R}=a R+b J+f(t), \\ \dot{J}=c R+d J+g(t), \\ R(0)=R_{0}, J(0)=J_{0} .\end{array}, f(t), g(t)\right.$ must be integrable, so they must satisfied the Existence and uniqueness condition.
+
+{\bf  Example:}
+
+1) $\left\{\begin{array}{l}\dot{R}=R+J+t^2, \\ \dot{J}=R-2 J+3 t+1, \\ R(0)=0, J(0)=-1 .\end{array}\right.$
+
+2) $\left\{\begin{array}{l}\dot{R}=2 R+J+e^t, \\ \dot{J}=-3 R+2 J+\sin t, \\ R(0)=1, J(0)=0 .\end{array}\right.$
+
+3) $\left\{\begin{array}{l}\dot{R}=3 R-J+3 t \\ \dot{J}=R+2 J+\frac{1}{t} \\ R(0)=1, J(0)=-2\end{array}\right.$
+
+4) $\left\{\begin{array}{l}\dot{R}=-R-J+3 t^3 \\ \dot{J}=R-2 J+t^2+1 \\ R(0)=1, J(0)=1\end{array}\right.$
+
+5) $\left\{\begin{array}{l}\dot{R}=-R+J+\sqrt{t} \\ \dot{J}=R+4 J+2 t e^{t^2} \\ R(0)=-2, J(0)=2\end{array}\right.$
+
+A more general and also complicated love between Romeo and Juliet is the IVP
+$$
+\left\{\begin{array}{l}
+	\dot{R}=f(t, J, R), \\
+	\dot{J}=g(t, J, R), \quad \text { where } f, g \text { are two real function dependent on } t, R, J \text {. } \\
+	R(0)=R_{0}, J(0)=J_{0} .
+\end{array}\right.
+$$
+In this case, \textbf{Picard's Iteration Method} that has been mentioned before can be used to solved this kind of problem.\\
+\begin{center}
+$R_n=R_0+\int_0^t f\left(t, R_{n-1}, J_{n-1}\right) d t$
+\end{center}
+\begin{center}
+$J_n=J_0+\int_0^t g\left(t, R_{n-1}, J_{n-1}\right) d t$
+\end{center}
+
+However, this method seem not able to solve many complicated system due to the amount of times of iteration. So the Euler Method in \textbf{exercise 4} is used more in real life.\\
+{\bf  Example:}
+
+1) $\left\{\begin{array}{l}\dot{R}=R^2+J+t^2 \\ \dot{J}=R-\frac{2}{J}+4 t+1 \\ R(0)=0, J(0)=-2\end{array}\right.$
+
+2) $\left\{\begin{array}{l}\dot{R}=\sqrt{R}+3 J+e^{2 t} \\ \dot{J}=-3 R+2 J^3+\cos t \\ R(0)=1, J(0)=2\end{array}\right.$
+
+3) $\left\{\begin{array}{l}\dot{R}=3 R-J^2+3 t \\ \dot{J}=R^3+\sqrt{J}+\frac{1}{t} \\ R(0)=2, J(0)=-2\end{array}\right.$
+
+4) $\left\{\begin{array}{l}\dot{R}=-R^2-J \\ \dot{J}=R-2 J^2 \\ R(0)=1, J(0)=0\end{array}\right.$
+
+5) $\left\{\begin{array}{l}\dot{R}=-\sqrt{R}+J+\sqrt{t} \\ \dot{J}=R^2+\frac{1}{J}+2 t e^{t^2} \\ R(0)=-2, J(0)=1\end{array}\right.$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercise 4}
+$\varepsilon\left(t_{1}\right)=\sqrt{\left[R\left(t_{1}\right)-R_{1}\right]^{2}+\left[J\left(t_{1}\right)-J_{1}\right]^{2}}$
+
+Because the existence of solutions in this case is guaranteed, so $R(t), J(t)$ must satisfied the Lipchitz condition:
+$$
+\begin{aligned}
+	&\|f(y)-f(x)\| \leq C\|y-x\| \\
+	&\text { for }(y=u+h, x=u) \\
+	&\Leftrightarrow \lim _{h \rightarrow 0} \frac{\|f(u+h)-f(h)\|}{h} \leq C \\
+	&h \rightarrow 0 \text { : local\_only }
+\end{aligned}
+$$
+
+Then $\mathrm{R}, \mathrm{J}$ could be proof to \textbf{be able for second order differentiable.} 
+
+With
+$$
+\left\{\begin{array}{l}
+	R^{\prime}(t)=f(t, J(t), R(t)), \\
+	J^{\prime}(t)=g(t, J(t), R(t)), \text { and } \\
+	R(0)=R_{0}, J(0)=J_{0} .
+\end{array}\right.
+$$
+
+Using explicit Euler Method:
+$$
+\left\{\begin{array}{l}
+	R_{1}=R_{0}+f\left(t, R_{0}, J_{0}\right)^{*} h \\
+	J_{1}=J_{0}+g\left(t, R_{0}, J_{0}\right)^{*} h .
+\end{array}\right.
+$$
+
+Using Taylor Expanding:
+$$
+\left\{\begin{array}{l}
+	R\left(t_{n}+h\right)=R\left(t_{n}\right)+R^{\prime}\left(t_{n}\right) \cdot h+\frac{1}{2 !} R^{\prime \prime}\left(\overline{t_{n}}\right) \cdot h^{2} \\
+	J\left(t_{n}+h\right)=J\left(t_{n}\right)+J^{\prime}\left(t_{n}\right) \cdot h+\frac{1}{2 !} J{ }^{\prime \prime}\left(\overline{t_{n}}\right) \cdot h^{2}
+\end{array}\right.
+$$
+Where $\bar{t}_{n}$ is some point in the interval $t_{n}<\bar{t}_{n}+h$
+
+From (1) and (2):
+$$
+\varepsilon\left(t_{1}\right)=\sqrt{\left[\frac{1}{2 !} R^{\prime \prime}\left(\overline{t_{n}}\right) \cdot h^{2}\right]^{2}+\left[\frac{1}{2 !} J "\left(\overline{t_{n}}\right) \cdot h^{2}\right]^{2}}
+$$
+
+Then,
+$$
+\varepsilon\left(t_{1}\right) \approx \sqrt{\left[\frac{1}{2 !} R^{\prime \prime}\left(\overline{t_{n}}\right) \cdot h^{2}\right]^{2}+\left[\frac{1}{2 !} J "\left(\overline{t_{n}}\right) \cdot h^{2}\right]^{2}} \approx h^{2} \sqrt{\left[\frac{1}{2 !} R "\left(\overline{t_{n}}\right)\right]^{2}+\left[\frac{1}{2 !} J "\left(\overline{t_{n}}\right)\right]^{2}}
+$$
+
+Then $u \sim u_{\text {real }}+O\left(h^{2}\right)$
+
+This function is proportional to $h^{2}$.
+
+$\Rightarrow$ One of the advantages of this numerical scheme is the fast running time. However, this scheme is not "stable" for large time step $\mathrm{h}$ (as mentioned while proving).
+
+In this case, we will mention about the \textbf{"implicit" Euler Method:}
+
+Implicit methods can be used to replace explicit ones in cases where the stability requirements of the latter impose stringent conditions on the time step size. However, implicit methods are more expensive to be implemented for non-linear problems since $R(t+1), J(t+1)$ is given only in terms of an implicit equation.
+$$
+\left\{\begin{array}{l}
+	R_{n+1}=R_{n}+f\left(t, R_{n+1}, J_{n+1}\right) * h, \\
+	J_{n+1}=J_{n}+g\left(t, R_{n+1}, J_{n+1}\right) * h .
+\end{array}\right.
+$$
+
+In general,
+$$
+y_{n+1}=y_{n}+h f\left(t_{n+1}, y_{n+1}\right)
+$$
+
+Then, we have
+$$
+\Delta=y_{n+1}-y_{n}-h f\left(t_{n+1}, y_{n+1}\right)
+$$
+
+Because $f\left(t_{n+1}, y_{n+1}\right)=y^{\prime}\left(t_{n+1}\right)$, it makes sense that we could expand a Taylor series around the point $t_{n+1}$. By Taylor's theorem,
+$$
+y\left(t_{n}\right)=y\left(t_{n+1}\right)+y^{\prime}\left(t_{n+1}\right)\left(t_{n}-t_{n+1}\right)+\frac{1}{2} y^{\prime \prime}(\xi)\left(t_{n}-t_{n+1}\right)^{2}
+$$
+
+This simplifies to $y_{n}=y_{n+1}-h . f\left(t_{n+1}, y_{n+1}\right)+\frac{h^{2}}{2} y^{\prime \prime}(\xi)$ for some $\xi \in\left(t_{n}, t_{n+1}\right)$
+
+Substituition to $y_{n+1}=y_{n}+h f\left(t_{n+1}, y_{n+1}\right)$ and $\Delta=y_{n+1}-y_{n}-h f\left(t_{n+1}, y_{n+1}\right)$
+
+We get $\Delta=\frac{h^{2}}{2} y^{\prime \prime}(\xi)$, which obtained the result we wanted.
+
+
+\textbf{Solving a system of ODEs using Implicit Euler method}\\
+Here we need to use 2 basic loops, 1 for integrating every time step and another to the zero of the nonlinear root using the Newton Rhapson Method\\
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.38]{4.Flowchart}
+\end{figure}
+\textbf{Newton Rhapson formulation}\\
+The Newton-Raphson method (also known as Newton's method) is a way to quickly find a good approximation for the root of a real-valued function $f(x)=0$. It uses the idea that a continuous and differentiable function can be approximated by a straight line tangent to it.
+Suppose you need to find the root of a continuous, differentiable function $f(x)$, and you know the root you are looking for is near the point $x=x_0$. Then Newton's method tells us that a better approximation for the root is
+$$
+x_1=x_0-\frac{f\left(x_0\right)}{f^{\prime}\left(x_0\right)}
+$$
+This process may be repeated as many times as necessary to get the desired accuracy. In general, for any $x$-value $x_n$, the next value is given by
+$$
+x_{n+1}=x_n-\frac{f\left(x_n\right)}{f^{\prime}\left(x_n\right)}
+$$
+Note: the term "near" is used loosely because it does not need a precise definition in this context. However, $x=x_0$ should be closer to the root you need than to any other root (if the function has multiple roots).
+\textbf{Geometric Representation:}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.38]{4.Geometric}
+\end{figure}
+For a system of ODEs, the Newton Rhapson equation will be in the following form:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.38]{4.Newton}
+\end{figure}
+Since we are dealing with a coupled ODE system, we need to use a Jacobian instead of a normal derivative, as the ODEs changes w.r.t all the variables. \\
+This equation also needs to be rearranged in the following form to make it solvable, using the \textbf{Newton Rhapson Algorithm}\\
+\[{y_n} + hf({t_{n + 1}},{y_{n + 1}}) - {y_{n + 1}} = 0\]
+For example, \\\\
+$\left\{ \begin{array}{l}
+\dot R =  - 0.04R + {10^4}RJ\\
+\dot J = {R^2} - 3J
+\end{array} \right.$ \\
+
+\textbf{This is our Python source code implementation for Implicit Euler method}
+\begin{code}{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.font_manager as font_manager
+%matplotlib inline
+\end{code}
+\textbf{Some function for Implicit Euler using Newton Rhapson Algorithm }
+\begin{code}{python}
+# The Impilicit Euler formulars in the form of the Newton Raphson Algorithm 
+# var_old + h * f(var_new) - var_new
+def T(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, h):
+
+    return Ti + h - Ti_new
+
+
+def R(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dR, h):
+
+    return Ri + h * dR(Ti_new, Ri_new, Ji_new) - Ri_new
+
+
+def J(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dJ, h):
+
+    return Ji + h * dJ(Ti_new, Ri_new, Ji_new) - Ji_new
+\end{code}
+\textbf{A function for calculate the Jacobian matrix for this system}
+\begin{code}{python}
+# Jacobian is used to calcute the change of the ODE system which has multiple variables instead of normal derivative
+def jacobian(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dR, dJ, h):
+
+    jacob = np.ones((3, 3))
+    d = 1e-9
+
+    jacob[0, 0] = (T(Ti, Ri, Ji, (Ti_new + d), Ri_new, Ji_new, h) - T(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, h)) / d
+    jacob[0, 1] = (T(Ti, Ri, Ji, Ti_new, (Ri_new + d), Ji_new, h) - T(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, h)) / d
+    jacob[0, 2] = (T(Ti, Ri, Ji, Ti_new, Ri_new, (Ji_new + d), h) - T(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, h)) / d
+
+    jacob[1, 0] = (R(Ti, Ri, Ji, (Ti_new + d), Ri_new, Ji_new, dR, h) - R(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dR, h)) / d
+    jacob[1, 1] = (R(Ti, Ri, Ji, Ti_new, (Ri_new + d), Ji_new, dR, h) - R(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dR, h)) / d
+    jacob[1, 2] = (R(Ti, Ri, Ji, Ti_new, Ri_new, (Ji_new + d), dR, h) - R(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dR, h)) / d
+
+    jacob[2, 0] = (J(Ti, Ri, Ji, (Ti_new + d), Ri_new, Ji_new, dJ, h) - J(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dJ, h)) / d
+    jacob[2, 1] = (J(Ti, Ri, Ji, Ti_new, (Ri_new + d), Ji_new, dJ, h) - J(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dJ, h)) / d
+    jacob[2, 2] = (J(Ti, Ri, Ji, Ti_new, Ri_new, (Ji_new + d), dJ, h) - J(Ti, Ri, Ji, Ti_new, Ri_new, Ji_new, dJ, h)) / d
+
+    return jacob
+\end{code}
+\textbf{A function for Newton Rhapson Algorithm}
+\begin{code}{python}
+# Newton Raphson Algorithm loops for new X to receive the one in the acceptable error (which is described in the flowchart)
+def NewtonRhapson(Ti, Ri, Ji, T_guess, R_guess, J_guess, dR, dJ, h):
+
+    X_old = np.ones((3, 1))
+    X_old[0] = T_guess
+    X_old[1] = R_guess
+    X_old[2] = J_guess
+
+    X = np.ones((3, 1))
+
+    LTE = 9e9
+    acceptLTE = 1e-9
+
+    while LTE > acceptLTE:
+
+        jacob = jacobian(Ti, Ri, Ji, X_old[0], X_old[1], X_old[2], dR, dJ, h)
+
+        X[0] = T(Ti, Ri, Ji, X_old[0], X_old[1], X_old[2], h)
+        X[1] = R(Ti, Ri, Ji, X_old[0], X_old[1], X_old[2], dR, h)
+        X[2] = J(Ti, Ri, Ji, X_old[0], X_old[1], X_old[2], dJ, h)
+
+        X_new = X_old - np.matmul(np.linalg.inv(jacob), X)
+
+        LTE = np.max(np.abs(X_new - X_old))
+
+        X_old = X_new
+
+    return [X_new[0], X_new[1], X_new[2]]
+\end{code}
+\textbf{using Implicit Euler}
+\begin{code}{python}
+# using Implicit Euler Method (implementing Newton Raphson Algorithm) to calculate the solution for ODE system
+def implicit_euler(dR, dJ, R0, J0, tspan, dt):
+
+    t = np.arange(0, tspan, dt)
+    # declare arrays to contain the instant values from 0 to tspan
+    T = np.zeros(len(t))
+    R = np.zeros(len(t))
+    J = np.zeros(len(t))
+
+    T[0] = 0  # starting point of time at t = 0
+    R[0] = R0 # starting point of R at t = 0
+    J[0] = J0 # starting point of J at t = 0
+
+    T_guess = dt  # t i+1
+    R_guess = 10  # random initial value, better if it is near the R i+1
+    J_guess = 10  # random initial value, better if it is near the J i+1
+
+    for i in range(1, len(t)):
+
+        T[i], R[i], J[i] = NewtonRhapson(T[i-1], R[i-1], J[i-1], T_guess, R_guess, J_guess, dR, dJ, dt)
+
+        T_guess = T[i]
+        R_guess = R[i]
+        J_guess = J[i]
+
+    return [t, R, J]
+\end{code}
+\textbf{Then use these code for our first example}
+\begin{code}{python}
+# Definition for R'
+def dR(T, R, J):
+    return -0.04 * R + 10000 * R * J
+# Definition for J'
+def dJ(T, R, J):
+    return R * R - 3 * J
+# initial value of X0 = (R0 J0)^Tranpose 
+R0 = 3
+J0 = -2
+
+
+# plot solution
+t, R, J = implicit_euler(dR, dJ, R0, J0, 10, 0.001)
+plt.figure(figsize=(7, 7))
+font = font_manager.FontProperties(family='Arial',
+                                   weight='normal',
+                                   style='normal', size=14)
+plt.plot(t, R)
+plt.plot(t, J)
+plt.title("LOVE BETWEEN\n ROMEO AND JULIET")
+plt.xlabel("Time", {'size': 14})
+plt.ylabel("Love for the other", {'size': 14})
+plt.legend(["Romeo's", "Juliet's"], loc="upper right", prop=font)
+plt.show()
+\end{code}
+\newpage
+\textbf{Result: }
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{4.i1s}
+  \caption*{Solution figure}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.38]{4.i1p}
+  \caption*{Phase-portrait figure}
+\end{subfigure}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
+% \bibliography{refs}
+\begin{thebibliography}{90}
+\bibitem{Project Idea} \textbf{Project Idea}\\ 
+Steven H. Strogatz. \emph {Ordinary Differential Equations}. Springer Science & Business Media, 1992\\
+\bibitem{Basic Knowledge and ODE solution} \textbf{Basic Knowledge}\\
+Vladimir I Arnold. \emph {Love Affair and Differential Equation}. \\
+Morris W Hirsch and Stephen Smale. \emph {Differential Equations, Dynamical Systems, and Linear Algebra}. Academic Press, 1974.\\
+David G Luenberger. \emph {Introduction to Dynamic Systems: Theory, Models, and Applications, volume 1}. Wiley New York, 1979
+\bibitem{Picard Iteration and Lipchitz Continuous} \textbf{Picard Iteration and Lipchitz Continuous}\\
+\url{https://math.stackexchange.com/questions/347599/questions-about-the-picard-lindel%C3%B6f-theorem-for-an-ode}\\
+Gerald Teschl.\emph {Ordinary Differential Equations
+and Dynamical Systems}. 
+\bibitem{Explicit, Implicit Euler's methods} \textbf{Explicit, Implicit Euler's methods}\\ \url{https://web.mit.edu/10.001/Web/Course_Notes/Differential_Equations_Notes/node3.html}\\
+\url{https://www.cs.unc.edu/~smp/COMP205/LECTURES/DIFF/lec17/node3.html} \\
+
+\bibitem{Newton Rhapson Algorithm} \textbf{Newton Rhapson Algorithm}\\ \url{https://brilliant.org/wiki/newton-raphson-method/}\\
+
+\bibitem{Implicit Euler Implementation} \textbf{Implicit Euler Implementation}\\ \url{https://skill-lync.com/student-projects/Solving-a-system-of-ODEs-using-Implicit-Euler-method-86502}
+\end{thebibliography}
+\end{document}
+
